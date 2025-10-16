@@ -6,6 +6,7 @@ void main(){
         print("あまり俺をなめるなよ！");
     }
 
+    //宮崎PCからテスト
 
     //こんにちは宮崎君
     //konnnitiha
