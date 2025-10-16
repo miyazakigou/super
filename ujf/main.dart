@@ -9,4 +9,6 @@ void main(){
 
     //こんにちは宮崎君
     //konnnitiha
+    //こんにちんこ
+    //砂田のPCです
 }
