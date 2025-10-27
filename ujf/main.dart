@@ -5,4 +5,6 @@ void main(){
     for(var i = 0;i<5;i++){
         print("あまり俺をなめるなよ！");
     }
+
+    
 }
