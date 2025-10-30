@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Login.dart';  
 
 void main() {
   runApp(MyApp());
@@ -37,13 +38,13 @@ class _SplashScreenState extends State<SplashScreen> {
       // 未ログイン → ログイン画面へ
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),  // LoginPageクラスを使用
       );
     } else {
       // ログイン済み → メイン画面へ
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => Home()),
       );
     }
   }

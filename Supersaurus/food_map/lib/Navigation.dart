@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:untitest/main.dart';
-import 'package:untitest/first.dart';
-import 'package:untitest/second.dart';
+import 'package:food_map/main.dart';
+import 'package:food_map/Login.dart';
+import 'package:food_map/splash.dart';
 
 class AppRoutes {
   static const main = '/main';
-  static const first = '/first';
-  static const second = '/second';
+  static const login = '/login';
+  static const splash = '/splash';
 }
 
 class AppRouter {
@@ -16,10 +16,10 @@ class AppRouter {
         switch (settings.name) {
           case AppRoutes.main:
             return const MyApp();
-          case AppRoutes.first:
-            return const First();
-          case AppRoutes.second:
-            return const Second();
+          case AppRoutes.login:
+            return const ();
+          case AppRoutes.splash:
+            return const ();
           default:
             return const Scaffold(
               body: Center(
