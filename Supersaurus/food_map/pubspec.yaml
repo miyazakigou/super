@@ -1,29 +1,38 @@
 name: food_map
 description: "A new Flutter project."
 publish_to: 'none'
+
 version: 1.0.0+1
+
 environment:
   sdk: ^3.9.2
+
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+
   flutter_native_splash: ^2.4.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/splash/logonew.png
+
+
 flutter_native_splash:
-  color: "#F2EBC9"                  # 背景色
-  image: assets/splash/logonew.png     # ロゴ画像
-  branding: assets/splash/logonew.png # 任意（なければ削除OK）
+  color: "#F2EBC9"                     # 背景色
+  image: assets/splash/logonew.png     # メインロゴ
+  branding: assets/splash/logonew.png  # 下部ブランドロゴ（同じでもOK）
   android_12:
-    color: "#ffffff"
-    image: assets/splash/logo.png
+    color: "#F2EBC9"
+    image: assets/splash/logonew.png
   android: true
   ios: true
   web: false
-
