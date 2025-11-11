@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown),
               const SizedBox(height: 10),
-              const Text("飯屋GO!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text("おちんちんGO!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 30),
               const Text("login", style: TextStyle(fontSize: 26)),
               const SizedBox(height: 30),
