@@ -22,4 +22,4 @@ class SplashPage extends StatelessWidget {
       ),
     );
   }
-}
+}                                            //AIに作らせたからどんな画面かよくわからんが、読み込み早すぎて意味ないかも

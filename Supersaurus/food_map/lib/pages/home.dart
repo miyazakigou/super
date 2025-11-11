@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
       ),
       body: const GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: LatLng(35.6804, 139.7690),  //佐賀国東京県東京駅周辺の座標
-          zoom: 14,
+          target: LatLng(35.6804, 139.7690),  //佐賀国東京県東京駅周辺の座標　
+          zoom: 14,                           //現在地を表示するやり方がわからなかった
         ),
       ),
     );

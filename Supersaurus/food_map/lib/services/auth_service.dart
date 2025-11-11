@@ -5,12 +5,12 @@ class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  // メール & パスワードでログイン
+  // メール&パスワードでログイン
   static Future<void> signInWithEmail(String email, String password) async {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
   }
 
-  // メール & パスワードで新規登録
+  // メール&パスワードで新規登録
   static Future<void> signUpWithEmail(String email, String password) async {
     await _auth.createUserWithEmailAndPassword(email: email, password: password);
   }
@@ -45,5 +45,5 @@ class AuthService {
     } finally {
       await _auth.signOut();
     }
-  }
-}
+  }                               //必要ならアカウント削除も追加する
+}                         

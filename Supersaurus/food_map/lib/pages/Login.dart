@@ -29,13 +29,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8EFD4),
+      backgroundColor: const Color(0xFFF8EFD4),  //背景色,アイコンの色は図を見て変える
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 80),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown),
+              const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown), //ロゴのアイコンを探すor既存のアイコンを編集(トリミング)して使う
               const SizedBox(height: 10),
               const Text("おちんちんGO!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 30),
@@ -80,9 +80,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text("新規登録"),
               ),
               const SizedBox(height: 20),
-              const Divider(),
+              const Divider(),                                                                    //区切り線の手直し
               const SizedBox(height: 10),
-              _socialButton("Googleで続行", Icons.g_mobiledata, AuthService.signInWithGoogle),
+              _socialButton("Googleで続行", Icons.g_mobiledata, AuthService.signInWithGoogle),         //いい感じのgoogleアイコンがない
               const SizedBox(height: 10),
               _socialButton("Appleで続行", Icons.apple),
             ],
