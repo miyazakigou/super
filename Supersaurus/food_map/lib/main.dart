@@ -1,3 +1,4 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,10 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Firebase Auth Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const AuthGate(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AuthGate(), // ←ここ！
     );
   }
 }

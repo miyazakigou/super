@@ -18,6 +18,8 @@ dependencies:
   firebase_auth: ^6.1.2
   firebase_analytics: ^12.0.4
 
+  google_sign_in: ^6.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -31,9 +33,9 @@ flutter:
 
 
 flutter_native_splash:
-  color: "#F2EBC9"                     # 背景色
-  image: assets/splash/logonew.png     # メインロゴ
-  branding: assets/splash/logonew.png  # 下部ブランドロゴ（同じでもOK）
+  color: "#F2EBC9"                   
+  image: assets/splash/logonew.png    
+  branding: assets/splash/logonew.png  
   android_12:
     color: "#F2EBC9"
     image: assets/splash/logonew.png
