@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "688157230335",
+    "project_id": "super-c80b2",
+    "storage_bucket": "super-c80b2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688157230335:android:edcf076b818c65687438ca",
+        "android_client_info": {
+          "package_name": "com.example.food_map"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUuNM33sjQwBatrAm3595EKTe-yIDk8os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
