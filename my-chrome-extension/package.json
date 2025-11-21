@@ -1,0 +1,32 @@
+{
+  "name": "my-chrome-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension that does amazing things.",
+  "main": "src/background.ts",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack --watch"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "ts-loader": "^8.0.0"
+  },
+  "browser": {
+    "src/background.ts": "background.js",
+    "src/content/contentScript.ts": "contentScript.js",
+    "src/popup/popup.ts": "popup.js",
+    "src/options/options.ts": "options.js"
+  }
+}
