@@ -20,13 +20,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late List<SearchFieldListItem<City>> cities;
   SearchFieldListItem<City>? selectedValue;
+  String selectedCategory = 'すべて';
+
+  final List<String> categories = [
+    'すべて',
+    'ラーメン',
+    'カレー',
+    'カフェ',
+    '居酒屋',
+  ];
 
   @override
   void initState() {
     cities = [
       City('New York', '10001'),
       City('Los Angeles', '90001'),
-      // Add more cities as needed
     ].map(
       (City ct) => SearchFieldListItem<City>(
         ct.name,
@@ -41,28 +49,109 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          // GoogleMap背景
           const GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(35.6804, 139.7690),  //佐賀国東京県東京駅周辺の座標　
-          zoom: 14,                           //現在地を表示するやり方がわからなかった
-        ),),
-        SearchField<City>(
-    suggestions: cities,
-    hint: 'Search for a city or zip code',
-    maxSuggestionBoxHeight: 300,
-    onSuggestionTap: (SearchFieldListItem<City> item) {
-      setState(() {
-        selectedValue = item;
-      });
-    },
-    selectedValue: selectedValue,
-    /// customizes the decoration of each suggestion item
-    suggestionItemDecoration: SuggestionDecoration(
-      padding: EdgeInsets.all(8),
-      borderRadius: BorderRadius.all(Radius.circular(2)),
-      color: Colors.grey.shade200,
-    ),
-  ),
+            initialCameraPosition: CameraPosition(
+              target: LatLng(35.6804, 139.7690),
+              zoom: 14,
+            ),
+          ),
+          
+          // 上部のヘッダー部分
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white.withOpacity(0.8),
+                    Colors.white.withOpacity(0.0),
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.all(12),
+              child: SafeArea(
+                bottom: false,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 検索バーとユーザーアイコンの行
+                    Row(
+                      children: [
+                        // 検索バー
+                        Expanded(
+                          child: SearchField<City>(
+                            suggestions: cities,
+                            hint: '        検索',
+                            maxSuggestionBoxHeight: 300,
+                            onSuggestionTap: (SearchFieldListItem<City> item) {
+                              setState(() {
+                                selectedValue = item;
+                              });
+                            },
+                            selectedValue: selectedValue,
+                            suggestionItemDecoration: SuggestionDecoration(
+                              padding: const EdgeInsets.all(8),
+                              borderRadius: const BorderRadius.all(Radius.circular(8)),
+                              color: Colors.grey.shade200,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        // ユーザーアイコン
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey.shade300, width: 2),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.account_circle, size: 28),
+                            onPressed: () {
+                              // ユーザーメニューの処理
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    
+                    // カテゴリーボタン
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: categories.map((category) {
+                          final isSelected = selectedCategory == category;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  selectedCategory = category;
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: isSelected ? Colors.blue : Colors.grey.shade300,
+                                foregroundColor: isSelected ? Colors.white : Colors.black87,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              ),
+                              child: Text(category),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
