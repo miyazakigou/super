@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 
+
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
+
 }
 
 class _SignupPageState extends State<SignupPage> {
@@ -16,6 +18,8 @@ class _SignupPageState extends State<SignupPage> {
   String _passwordErrorMessage = "";
   String _usernameErrorMessage = "";
   bool _isLoading = false;
+  bool _agreedToTerms = false;
+
 
   Future<void> _handleSignup() async {
     final email = _emailController.text.trim();
@@ -27,6 +31,7 @@ class _SignupPageState extends State<SignupPage> {
     setState(() {
       _passwordErrorMessage = "";
       _usernameErrorMessage = "";
+      
     });
 
     // バリデーション
@@ -318,7 +323,8 @@ class _SignupPageState extends State<SignupPage> {
                         ],
                       ),
                       const SizedBox(height: 30),
-                      // 送信ボタン
+                      
+                      // 送信ボタンz
                       SizedBox(
                         width: double.infinity,
                         height: 48,
