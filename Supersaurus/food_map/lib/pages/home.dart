@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     cities = [
       City('New York', '10001'),
       City('Los Angeles', '90001'),
+      
       // Add more cities as needed
     ].map(
       (City ct) => SearchFieldListItem<City>(
