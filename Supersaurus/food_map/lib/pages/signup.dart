@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import 'Terms_of_Service.dart';
+ 
+
 
 
 class SignupPage extends StatefulWidget {
@@ -323,7 +326,57 @@ class _SignupPageState extends State<SignupPage> {
                         ],
                       ),
                       const SizedBox(height: 30),
-                      
+                     
+                      Row(
+                        children: [
+                        Checkbox(
+                          value: _agreedToTerms,
+                          onChanged: (v) async {
+                          if (v == true) {
+                            // 利用規約画面へ遷移
+                            await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                            builder: (_) => const TermsOfServiceEndPage(),
+                          ),
+                          );
+
+                          // 同意ボタンを押したらチェックONにする
+                          setState(() {
+                            _agreedToTerms = true;
+                          });
+                          } else {
+                            setState(() {
+                            _agreedToTerms = false;
+                        });
+                      }
+                    },
+                  ),
+                    GestureDetector(
+                      onTap: () async {
+                      await Navigator.push(
+                      context,
+                    MaterialPageRoute(
+                      builder: (_) => const TermsOfServiceEndPage(),
+                    ),
+                  );
+
+                  setState(() {
+                    _agreedToTerms = true;
+                  });
+                },
+                    child: const Text(
+                    "利用規約に同意する",
+                    style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
                       // 送信ボタンz
                       SizedBox(
                         width: double.infinity,
