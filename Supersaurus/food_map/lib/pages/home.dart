@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../services/auth_service.dart';
 import 'package:searchfield/searchfield.dart';
-
+import 'signup.dart';
+import 'Settings.dart';
 class City {
   final String name;
   final String zip;
@@ -112,7 +113,12 @@ class _HomePageState extends State<HomePage> {
                             icon: const Icon(Icons.account_circle, size: 28),
                             onPressed: () {
                               // ユーザーメニューの処理
-                              
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                              builder: (_) => const AccountSettingScreen(),
+                                ),
+                            );
                             },
                           ),
                         ),
