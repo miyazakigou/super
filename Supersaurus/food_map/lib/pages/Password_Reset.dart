@@ -91,7 +91,6 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   ),
                   onPressed: () {
                     print("送信: ${_emailController.text}");
-                    // Firebase password reset 追加予定
                   },
                   child: const Text("リンクを送信", style: TextStyle(fontSize: 18)),
                 ),

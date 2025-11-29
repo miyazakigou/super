@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              
               padding: const EdgeInsets.all(12),
               child: SafeArea(
                 bottom: false,

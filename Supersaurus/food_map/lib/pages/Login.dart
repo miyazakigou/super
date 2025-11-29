@@ -54,7 +54,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               TextButton(
-                onPressed: () {},
+                //まだ中身はからっぽ
+                onPressed: () {
+                  
+                },
                 child: const Text("パスワードを忘れた方"),
               ),
               const SizedBox(height: 10),

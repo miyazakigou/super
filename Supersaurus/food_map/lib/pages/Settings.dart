@@ -72,6 +72,7 @@ class AccountSettingScreen extends StatelessWidget {
   }
 
   Widget _buildAvatarSection() {
+    //アイコンはまだないぞ！
     return Column(
       children: const [
         CircleAvatar(
