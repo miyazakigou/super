@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountSettingScreen extends StatelessWidget {
   const AccountSettingScreen({Key? key}) : super(key: key);
@@ -43,9 +44,12 @@ class AccountSettingScreen extends StatelessWidget {
           _buildActionButton(
             text: 'ログアウト',
             color: Colors.black,
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/signup', (route) => false);
-            },
+            onTap: () async {
+            await FirebaseAuth.instance.signOut();
+            if (context.mounted) {
+              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+            }
+          },
           ),
           _buildActionButton(
             text: 'アカウント削除',
