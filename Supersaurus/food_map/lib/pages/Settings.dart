@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food_map/pages/Password_Reset.dart';
+
+
+
 
 class AccountSettingScreen extends StatelessWidget {
   const AccountSettingScreen({Key? key}) : super(key: key);
@@ -39,7 +43,12 @@ class AccountSettingScreen extends StatelessWidget {
           _buildActionButton(
             text: 'パスワード変更',
             color: Colors.blue,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PasswordResetScreen()),
+              );
+            },
           ),
           _buildActionButton(
             text: 'ログアウト',

@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown), //ロゴのアイコンを探すor既存のアイコンを編集(トリミング)して使う
               const SizedBox(height: 10),
-              const Text("おちんちんGO!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text("飯飯GO!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 30),
               const Text("login", style: TextStyle(fontSize: 26)),
               const SizedBox(height: 30),
