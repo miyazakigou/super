@@ -34,7 +34,7 @@ class AccountSettingScreen extends StatelessWidget {
               ],
             ),
           ),
-          //まだボタンを押しても何も起きないです
+          //ログアウトボタンだけ反応するぞ！
           const SizedBox(height: 30),
           _buildActionButton(
             text: 'パスワード変更',
