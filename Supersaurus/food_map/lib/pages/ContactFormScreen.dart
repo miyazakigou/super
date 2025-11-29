@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 class ContactFormScreen extends StatefulWidget {
   const ContactFormScreen({Key? key}) : super(key: key);
 
@@ -78,16 +78,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
             const Text("電話番号"),
             TextField(controller: phoneController),
             const SizedBox(height: 16),
-            //メールアドレスを全角で打っても半角になるようにした、多分なるよ！
             const Text("メールアドレス(必須)", style: TextStyle(color: Colors.red)),
-            TextField(keyboardType: TextInputType.emailAddress,
-            inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[0-9a-zA-Z@._-]')),
-            ],
-            decoration: const InputDecoration(
-                hintText: "メールアドレス",
-            ),
-            ),
+            TextField(controller: emailController),
             const SizedBox(height: 16),
 
             const Text("都道府県"),

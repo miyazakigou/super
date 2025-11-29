@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ルート設定したいならここから頼む↓、、、
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AuthGate(),
