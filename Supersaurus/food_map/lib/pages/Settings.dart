@@ -63,7 +63,9 @@ class AccountSettingScreen extends StatelessWidget {
           _buildActionButton(
             text: 'アカウント削除',
             color: Colors.red,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/delete_account');
+            },
           ),
           const SizedBox(height: 40),
         ],
