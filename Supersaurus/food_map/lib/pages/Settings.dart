@@ -79,7 +79,7 @@ class AccountSettingScreen extends StatelessWidget {
       children: const [
         CircleAvatar(
           radius: 40,
-          backgroundImage: AssetImage('assets/user.png'),
+          backgroundImage: AssetImage('assets/splash/IMG_7918.png'),
         ),
         SizedBox(height: 8),
         Text('写真またはアバター編集'),
