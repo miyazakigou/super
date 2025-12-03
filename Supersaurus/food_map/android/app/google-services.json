@@ -54,6 +54,14 @@
           }
         },
         {
+          "client_id": "688157230335-obghqem56qn47eumqgm9k0a8huonsnaj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_map",
+            "certificate_hash": "d835ddf6bc5619df852422a6fe633aca184c5122"
+          }
+        },
+        {
           "client_id": "688157230335-son7ijrllulkt6lbs001dbej4h2t4s9r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
