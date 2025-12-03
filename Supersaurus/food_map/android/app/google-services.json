@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "688157230335-ch8kcj5rn25s3fp91obv3qkgu1esehc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_map",
+            "certificate_hash": "331d2a1e3214e29116cd4ccdcb06a4440ba814e7"
+          }
+        },
+        {
           "client_id": "688157230335-he1qk4bm7uduer11hhhem0j349mv698m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -43,6 +51,14 @@
           "android_info": {
             "package_name": "com.example.food_map",
             "certificate_hash": "7590139ea9568a8c4b9e4ec9a91867ea03cf4019"
+          }
+        },
+        {
+          "client_id": "688157230335-v31k70n60l44pbsr69u4q9qegeruc0mk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_map",
+            "certificate_hash": "38599a5dafe3f87d905a7f5b595d9aacec9e83a5"
           }
         },
         {
