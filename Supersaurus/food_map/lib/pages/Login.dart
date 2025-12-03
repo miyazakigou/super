@@ -86,7 +86,32 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               const Divider(),                                                                    //区切り線の手直し
               const SizedBox(height: 10),
-              _socialButton("Googleで続行", Icons.g_mobiledata, AuthService.signInWithGoogle),         //いい感じのgoogleアイコンがない
+              _socialButton(
+                "Googleで続行",
+                Icons.g_mobiledata,
+                () async {
+                  debugPrint('Googleボタン押下');
+                  try {
+                    await AuthService.signInWithGoogle();
+                    debugPrint('Google signin success');
+                    // サインイン成功後にホーム画面へ遷移（名前付きルートを使用する例）
+                    if (mounted) {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    }
+                    // または HomePage を直接渡す場合:
+                    // if (mounted) {
+                    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomePage()));
+                    // }
+                  } catch (e, st) {
+                    debugPrint('Google signin failed: $e\n$st');
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Googleログインに失敗しました: $e")),
+                      );
+                    }
+                  }
+                },
+              ), //いい感じのgoogleアイコンがない
               const SizedBox(height: 10),
               _socialButton("Appleで続行", Icons.apple),
             ],
@@ -96,16 +121,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _socialButton(String text, IconData icon, [VoidCallback? onPressed]) {
-  return ElevatedButton.icon(
-    onPressed: onPressed,
-    icon: Icon(icon, color: Colors.black),
-    label: Text(text, style: const TextStyle(color: Colors.black)),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.white,
-      minimumSize: const Size(double.infinity, 48),
-    ),
-  );
+  Widget _socialButton(String text, IconData icon, [Future<void> Function()? onPressed]) {
+    return ElevatedButton.icon(
+      onPressed: onPressed == null ? null : () { onPressed(); },
+      icon: Icon(icon, color: Colors.black),
+      label: Text(text, style: const TextStyle(color: Colors.black)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        minimumSize: const Size(double.infinity, 48),
+      ),
+    );
 }
 
 }
