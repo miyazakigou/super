@@ -21,6 +21,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    signingConfigs {
+        release {
+            storeFile file("my-release-key.keystore")
+            storePassword "123456"
+            keyAlias "my-key-alias"
+            keyPassword "123456"
+        }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 apply(plugin = "com.google.gms.google-services")
