@@ -4,6 +4,7 @@ import '../services/auth_service.dart';
 import 'package:searchfield/searchfield.dart';
 import 'signup.dart';
 import 'Settings.dart';
+import 'ARPage.dart';  
 class City {
   final String name;
   final String zip;
@@ -59,6 +60,23 @@ class _HomePageState extends State<HomePage> {
           ),
           
           // 上部のヘッダー部分
+                    Positioned(
+            bottom: 90,
+            left: 20,
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ARPage()),
+                );
+              },
+              label: const Text("AR"),
+              icon: const Icon(Icons.view_in_ar),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black87,
+            ),
+          ),
+
           Positioned(
             top: 0,
             left: 0,
