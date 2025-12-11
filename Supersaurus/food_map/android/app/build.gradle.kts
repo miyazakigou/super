@@ -1,17 +1,18 @@
 import java.util.Properties
-import java.io.FileInputStream
+import java.io.File
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
-    id("com.google.gms.google-services")
 }
 
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+// 安全に key.properties を読み込む
+val keystoreProperties = Properties().apply {
+    val kpFile = File(rootProject.projectDir, "key.properties")
+    if (kpFile.exists()) {
+        kpFile.inputStream().use { load(it) }
+    }
 }
 
 android {
@@ -37,22 +38,29 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String?
-            keyPassword = keystoreProperties["keyPassword"] as String?
-            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
-            storePassword = keystoreProperties["storePassword"] as String?
+            // keystoreProperties を安全に参照（存在しない場合はデフォルトを使う）
+            val alias = keystoreProperties.getProperty("keyAlias") ?: ""
+            val keyPass = keystoreProperties.getProperty("keyPassword") ?: ""
+            val storeName = keystoreProperties.getProperty("storeFile") ?: "my-release-key.keystore"
+            val storePass = keystoreProperties.getProperty("storePassword") ?: ""
+
+            keyAlias = alias
+            keyPassword = keyPass
+            storeFile = file(storeName)
+            storePassword = storePass
         }
     }
 
     buildTypes {
-        getByName("release") {
+        debug {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
+        release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
-        }
-        getByName("debug") {
-            isMinifyEnabled = false
-            isShrinkResources = false
         }
     }
 }
@@ -64,3 +72,5 @@ flutter {
 dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 }
+
+apply(plugin = "com.google.gms.google-services")

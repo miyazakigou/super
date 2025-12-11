@@ -27,7 +27,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
     "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
     "鳥取県", "島根県", "岡山県", "広島県", "山口県",
     "徳島県", "香川県", "愛媛県", "高知県",
-    "福岡県", "佐賀帝国", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"
+    "福岡県", "佐賀帝国", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県","台湾"
   ];
 
   @override
@@ -107,6 +107,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
             const SizedBox(height: 30),
 
             //お問い合わせフォームへ移動
+            //こんにちは
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
