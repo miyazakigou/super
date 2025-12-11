@@ -21,6 +21,10 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
         ),
       ),
       body: Padding(
+<<<<<<< HEAD
+        child: 
+      )
+=======
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -53,6 +57,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
           ],
         ),
       ),
+>>>>>>> 22bcede5a6de3749b18a4a8d89afc8b32db896f7
     );
   }
 }

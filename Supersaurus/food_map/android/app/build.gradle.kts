@@ -52,17 +52,18 @@ android {
     }
 
     buildTypes {
-        debug {
-            signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
-        release {
-            signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
-            isShrinkResources = true
-        }
+    debug {
+        signingConfig = signingConfigs.getByName("debug")
+        isMinifyEnabled = false
+        isShrinkResources = false
     }
+    release {
+        signingConfig = signingConfigs.getByName("release")
+        isMinifyEnabled = true
+        isShrinkResources = true
+    }
+}
+
 }
 
 flutter {
