@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 class ContactFormScreen extends StatefulWidget {
   const ContactFormScreen({Key? key}) : super(key: key);
 
@@ -16,7 +17,6 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
 
-  //プルダウンメニュー用の都道府県リスト
   String selectedPref = "選択してください";
   List<String> prefectures = [
     "選択してください",
@@ -48,7 +48,6 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // 進捗ステップ表示
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -59,27 +58,74 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
             const SizedBox(height: 30),
 
             const Text("お名前(必須)", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+
+            // 氏名（漢字OK）
             Row(
               children: [
-                Expanded(child: TextField(decoration: const InputDecoration(labelText: "氏"), controller: lastNameController)),
+                Expanded(
+                  child: TextField(
+                    decoration: const InputDecoration(labelText: "氏"),
+                    controller: lastNameController,
+                    keyboardType: TextInputType.name,
+                  ),
+                ),
                 const SizedBox(width: 10),
-                Expanded(child: TextField(decoration: const InputDecoration(labelText: "名"), controller: firstNameController)),
+                Expanded(
+                  child: TextField(
+                    textInputAction: TextInputAction.done,
+                    decoration: const InputDecoration(labelText: "名"),
+                    controller: firstNameController,
+                    keyboardType: TextInputType.name,
+                  ),
+                ),
               ],
             ),
+
+            // フリガナ（カタカナのみ）
             Row(
               children: [
-                Expanded(child: TextField(decoration: const InputDecoration(labelText: "氏(フリガナ)"), controller: lastNameKanaController)),
+                Expanded(
+                  child: TextField(
+                    decoration: const InputDecoration(labelText: "氏(フリガナ)"),
+                    controller: lastNameKanaController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[ァ-ヶー]+')),
+                    ],
+                  ),
+                ),
                 const SizedBox(width: 10),
-                Expanded(child: TextField(decoration: const InputDecoration(labelText: "名(フリガナ)"), controller: firstNameKanaController)),
+                Expanded(
+                  child: TextField(
+                    textInputAction: TextInputAction.done,
+                    decoration: const InputDecoration(labelText: "名(フリガナ)"),
+                    controller: firstNameKanaController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[ァ-ヶー]+')),
+                    ],
+                  ),
+                ),
               ],
             ),
+
             const SizedBox(height: 16),
 
             const Text("電話番号"),
-            TextField(controller: phoneController),
+            TextField(
+              controller: phoneController,
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+            ),
+
             const SizedBox(height: 16),
+
             const Text("メールアドレス(必須)", style: TextStyle(color: Colors.red)),
-            TextField(controller: emailController),
+            TextField(
+              controller: emailController,
+              keyboardType: TextInputType.emailAddress,
+            ),
+
             const SizedBox(height: 16),
 
             const Text("都道府県"),
@@ -90,24 +136,28 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 DropdownMenuItem(value: e, child: Text(e))).toList(),
               onChanged: (value) => setState(() => selectedPref = value!),
             ),
+
             const SizedBox(height: 16),
 
-            //まだ完成していない、とりあえずお問い合わせ内容と表示させておいた
             const Text("お問い合わせ内容"),
             Container(
               height: 200,
               decoration: BoxDecoration(border: Border.all(color: Colors.black)),
               child: TextField(
+                textInputAction: TextInputAction.done,
                 controller: messageController,
                 maxLines: null,
                 expands: true,
-                decoration: const InputDecoration(border: InputBorder.none, contentPadding: EdgeInsets.all(10)),
+                keyboardType: TextInputType.multiline,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(10),
+                ),
               ),
             ),
+
             const SizedBox(height: 30),
 
-            //お問い合わせフォームへ移動
-            //こんにちは
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
