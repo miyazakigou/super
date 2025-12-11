@@ -36,6 +36,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,36 +49,15 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-<<<<<<< HEAD
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            child: const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown), //ロゴのアイコンを探すor既存のアイコンを編集(トリミング)して使う
+            child: const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown),
           ),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-=======
-      body: Padding(
-<<<<<<< HEAD
-        child: 
-      )
-=======
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Icon(Icons.delete_forever, size: 72, color: Colors.redAccent),
-            const SizedBox(height: 16),
-            const Text('アカウントを削除しますか？', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 12),
-            const Text('アカウントを削除すると全てのデータが失われます。戻すことはできません。', textAlign: TextAlign.center),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
->>>>>>> 6833f9b8915fb92bffe81b59610906def382151e
               children: [
                 const SizedBox(height: 170),
                 Padding(
@@ -124,7 +104,6 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
           ),
         ],
       ),
->>>>>>> 22bcede5a6de3749b18a4a8d89afc8b32db896f7
     );
   }
 }
