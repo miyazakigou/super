@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'Delete_Account_Complete.dart';
 
 class DeleteAccountPage extends StatefulWidget {
   const DeleteAccountPage({super.key});
@@ -8,6 +10,32 @@ class DeleteAccountPage extends StatefulWidget {
 }
 
 class _DeleteAccountPageState extends State<DeleteAccountPage> {
+  bool _isDeleting = false;
+
+  Future<void> _deleteAccount() async {
+    setState(() {
+      _isDeleting = true;
+    });
+
+    try {
+      await FirebaseAuth.instance.currentUser?.delete();
+      if (mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const DeleteAccountCompletePage()),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _isDeleting = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("アカウント削除に失敗しました: $e")),
+        );
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,23 +65,51 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('キャンセル'),
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
-                  onPressed: () {
-                    // TODO: アカウント削除処理をここに実装
-                  },
-                  child: const Text('削除する'),
+                const SizedBox(height: 170),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.delete_forever, size: 72, color: Colors.redAccent),
+                      const SizedBox(height: 16),
+                      const Text('アカウントを削除しますか？', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 12),
+                      const Text('アカウントを削除すると全てのデータが失われます。戻すことはできません。', textAlign: TextAlign.center),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('キャンセル'),
+                          ),
+                          const SizedBox(width: 16),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+                            onPressed: _isDeleting ? null : _deleteAccount,
+                            child: _isDeleting
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                    ),
+                                  )
+                                : const Text('削除する'),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ],
-            )
-          ],
-        ),
+            ),
+        
+          ),
+        ],
       ),
     );
   }
