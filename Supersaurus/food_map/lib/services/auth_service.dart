@@ -18,12 +18,13 @@ class AuthService {
   static Future<void> signInWithGoogle() async {
     try {
       //GoogleSignIn のインスタンスでサインイン（ユーザーが選択／キャンセルする）
+      
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
         return;
       }
 
-
+      
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
 
