@@ -54,23 +54,29 @@ class HelpPage extends StatelessWidget {
 
             // ④ 問い合わせ内容カード
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
                 height: 120,
+                padding: const EdgeInsets.all(12), // ← TextField に余白
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Color(0xFF8B4A32), width: 1.5),
                 ),
-                child: const Center(
-                  child: Text(
-                    "問い合わせ内容",
-                    style: TextStyle(fontSize: 18),
+                child: const TextField(
+                  maxLines: null,            // ← 複数行入力OK
+                  expands: true,             // ← 高さいっぱいに広げる
+                  decoration: InputDecoration(
+                    border: InputBorder.none, // ← 枠線を消す
+                    hintText: "問い合わせ内容を入力",
                   ),
+                  style: TextStyle(fontSize: 18),
+                  keyboardType: TextInputType.multiline,
                 ),
               ),
             ),
             const SizedBox(height: 24),
+
 
             // ⑤ お問い合わせフォームボタン
             Center(
