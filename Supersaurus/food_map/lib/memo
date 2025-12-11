@@ -35,6 +35,8 @@
 
         Delete_Account.dart ←アカウント削除画面//まだなんにもないよ
 
+        LocationService.dart←位置情報取得できるかも
+
 
 
 

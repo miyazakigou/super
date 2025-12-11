@@ -85,8 +85,8 @@ class _HomePageState extends State<HomePage> {
 
           // ★ 右下に現在地ボタン
           Positioned(
-            bottom: 90,
-            right: 12,
+            bottom: 100,
+            right: 5,
             child: FloatingActionButton(
               onPressed: _goToMyLocation,
               backgroundColor: Colors.white,
