@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_map/pages/Password_Reset.dart';
+import 'package:food_map/pages/Delete_Account.dart';
 
 
 
@@ -64,7 +65,10 @@ class AccountSettingScreen extends StatelessWidget {
             text: 'アカウント削除',
             color: Colors.red,
             onTap: () {
-              Navigator.pushNamed(context, '/delete_account');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DeleteAccountPage()),
+              );
             },
           ),
           const SizedBox(height: 40),

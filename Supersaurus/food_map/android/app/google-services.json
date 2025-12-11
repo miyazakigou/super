@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "688157230335-45pt0tsa1fo4uts83l0fsup4055h9mb7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "36f6ad17feb650e5fd9a71d18fe4595b31a9075d"
-          }
-        },
-        {
           "client_id": "688157230335-7idpufjqsgu3ov86p2ktqd6gp8erafnb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,51 +22,11 @@
           }
         },
         {
-          "client_id": "688157230335-93ra3276ci61pdqpisagf7vipfmvj84j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "b1b0ebb3708c484da3804343cba2ead112fee317"
-          }
-        },
-        {
-          "client_id": "688157230335-n3cn4fnrvme9l7qdj0dardach3jkgsav.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "331d2a1e3214e29116cd4ccdcb06a4440ba814e7"
-          }
-        },
-        {
-          "client_id": "688157230335-npdh2ha2bvs9ronbdaodud6nvtvkp5ev.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "7590139ea9568a8c4b9e4ec9a91867ea03cf4019"
-          }
-        },
-        {
-          "client_id": "688157230335-obghqem56qn47eumqgm9k0a8huonsnaj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "d835ddf6bc5619df852422a6fe633aca184c5122"
-          }
-        },
-        {
           "client_id": "688157230335-son7ijrllulkt6lbs001dbej4h2t4s9r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.food_map",
             "certificate_hash": "38599a5dafe3f87d905a7f5b595d9aacec9e83a5"
-          }
-        },
-        {
-          "client_id": "688157230335-vhn4hh1tnc0i3rhiafb2snr70gogk2hj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.food_map",
-            "certificate_hash": "0e439a5c9aba7714354f2c0b8796c04d27cbf69f"
           }
         },
         {
