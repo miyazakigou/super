@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_map/pages/Password_Reset.dart';
 import 'package:food_map/pages/Delete_Account.dart';
+import 'package:food_map/pages/Logout.dart';
 
 
 
@@ -55,11 +56,14 @@ class AccountSettingScreen extends StatelessWidget {
             text: 'ログアウト',
             color: Colors.black,
             onTap: () async {
-            await FirebaseAuth.instance.signOut();
-            if (context.mounted) {
-              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
-            }
-          },
+              await FirebaseAuth.instance.signOut();
+              if (context.mounted) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LogoutPage()),
+                );
+              }
+            },
           ),
           _buildActionButton(
             text: 'アカウント削除',
