@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
           
           // 上部のヘッダー部分
                     Positioned(
-            bottom: 90,
-            left: 20,
+            bottom: 10,
+            left: 10,
             child: FloatingActionButton.extended(
               onPressed: () {
                 Navigator.push(
