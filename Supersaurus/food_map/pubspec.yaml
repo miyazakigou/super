@@ -17,6 +17,7 @@ dependencies:
   firebase_analytics: ^12.0.4
   google_sign_in: ^6.2.1
   searchfield: ^1.4.0
+  geolocator: ^10.0.0
 
 dev_dependencies:
   flutter_test:
@@ -46,4 +47,8 @@ flutter_native_splash:
   android: true
   ios: true
   web: false
+
+
+
+
 
