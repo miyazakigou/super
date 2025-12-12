@@ -14,7 +14,7 @@ class DeleteAccountCompletePage extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Column(
-        children: [
+       children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: const Icon(Icons.restaurant_menu, size: 80, color: Colors.brown),
@@ -37,6 +37,11 @@ class DeleteAccountCompletePage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 12),
+                      const Text(
+                        'ご利用ありがとうございました。',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () {

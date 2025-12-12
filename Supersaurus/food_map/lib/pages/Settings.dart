@@ -7,8 +7,18 @@ import 'package:food_map/pages/Logout.dart';
 
 
 
-class AccountSettingScreen extends StatelessWidget {
+class AccountSettingScreen extends StatefulWidget {
   const AccountSettingScreen({Key? key}) : super(key: key);
+
+  @override
+  _AccountSettingScreenState createState() => _AccountSettingScreenState();
+}
+
+class _AccountSettingScreenState extends State<AccountSettingScreen> {
+  String _userName = 'kagureon';
+  String _email = 'kagureon@1234.com';
+  String _userId = 'kcsf5959';
+  String _gender = '男';
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +40,13 @@ class AccountSettingScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                _buildMenuItem(context, 'ユーザー名', 'kagureon'),
+                _buildMenuItem(context, 'ユーザー名', _userName),
                 _divider(),
-                _buildMenuItem(context, 'メールアドレス', 'kagureon@1234.com'),
+                _buildMenuItem(context, 'メールアドレス', _email),
                 _divider(),
-                _buildMenuItem(context, '登録ID', 'kcsf5959'),
+                _buildMenuItem(context, '登録ID', _userId),
                 _divider(),
-                _buildMenuItem(context, '性別', '男'),
+                _buildMenuItem(context, '性別', _gender),
               ],
             ),
           ),
@@ -82,12 +92,13 @@ class AccountSettingScreen extends StatelessWidget {
   }
 
   Widget _buildAvatarSection() {
-    //アイコンはまだないぞ！
+    //初期アバターを表示
     return Column(
       children: const [
         CircleAvatar(
           radius: 40,
-          backgroundImage: AssetImage('assets/splash/IMG_7918.png'),
+          backgroundColor: Color(0xFFE0E0E0),
+          child: Icon(Icons.person, size: 60, color: Colors.grey),
         ),
         SizedBox(height: 8),
         Text('写真またはアバター編集'),
@@ -96,22 +107,27 @@ class AccountSettingScreen extends StatelessWidget {
   }
 
   Widget _buildMenuItem(BuildContext context, String title, String value) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 100,
-            child: Text(title),
-          ),
-          Expanded(
-            child: Text(
-              value,
-              textAlign: TextAlign.left,
+    return InkWell(
+      onTap: () {
+        _showEditDialog(context, title, value);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 100,
+              child: Text(title),
             ),
-          ),
-          const Icon(Icons.chevron_right),
-        ],
+            Expanded(
+              child: Text(
+                value,
+                textAlign: TextAlign.left,
+              ),
+            ),
+            const Icon(Icons.chevron_right),
+          ],
+        ),
       ),
     );
   }
@@ -139,5 +155,89 @@ class AccountSettingScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showEditDialog(BuildContext context, String title, String currentValue) {
+    if (title == '性別') {
+      String selectedGender = currentValue;
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, dialogSetState) {
+              return AlertDialog(
+                title: Text('$title の編集'),
+                content: DropdownButton<String>(
+                  value: selectedGender,
+                  items: const [
+                    DropdownMenuItem(value: '男', child: Text('男')),
+                    DropdownMenuItem(value: '女', child: Text('女')),
+                  ],
+                  onChanged: (String? newValue) {
+                    if (newValue != null) {
+                      dialogSetState(() {
+                        selectedGender = newValue;
+                      });
+                    }
+                  },
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('キャンセル'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _gender = selectedGender;
+                      });
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('保存'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      );
+    } else {
+      TextEditingController controller = TextEditingController(text: currentValue);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title の編集'),
+            content: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                hintText: '$title を入力',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('キャンセル'),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    if (title == 'ユーザー名') {
+                      _userName = controller.text;
+                    } else if (title == 'メールアドレス') {
+                      _email = controller.text;
+                    } else if (title == '登録ID') {
+                      _userId = controller.text;
+                    }
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: const Text('保存'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
