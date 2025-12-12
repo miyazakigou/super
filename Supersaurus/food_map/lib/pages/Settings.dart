@@ -5,6 +5,7 @@ import 'package:food_map/pages/Delete_Account.dart';
 import 'package:food_map/pages/Logout.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -22,6 +23,34 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
   String _userId = 'kcsf5959';
   String _gender = '男';
   String? _avatarImagePath;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _userName = prefs.getString('userName') ?? 'kagureon';
+      _email = prefs.getString('email') ?? 'kagureon@1234.com';
+      _userId = prefs.getString('userId') ?? 'kcsf5959';
+      _gender = prefs.getString('gender') ?? '男';
+      _avatarImagePath = prefs.getString('avatarImagePath');
+    });
+  }
+
+  Future<void> _saveSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userName', _userName);
+    await prefs.setString('email', _email);
+    await prefs.setString('userId', _userId);
+    await prefs.setString('gender', _gender);
+    if (_avatarImagePath != null) {
+      await prefs.setString('avatarImagePath', _avatarImagePath!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +149,7 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
       setState(() {
         _avatarImagePath = pickedFile.path;
       });
+      _saveSettings();
     }
   }
 
@@ -208,6 +238,7 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
                       setState(() {
                         _gender = selectedGender;
                       });
+                      _saveSettings();
                       Navigator.of(context).pop();
                     },
                     child: const Text('保存'),
@@ -247,6 +278,7 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
                       _userId = controller.text;
                     }
                   });
+                  _saveSettings();
                   Navigator.of(context).pop();
                 },
                 child: const Text('保存'),

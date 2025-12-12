@@ -6,6 +6,8 @@ import 'package:searchfield/searchfield.dart';
 import 'signup.dart';
 import 'Settings.dart';
 import 'ARPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
 
 class City {
   final String name;
@@ -27,6 +29,8 @@ class _HomePageState extends State<HomePage> {
 
   GoogleMapController? mapController; // ★ 現在地移動用
 
+  String? _avatarImagePath;
+
   final List<String> categories = [
     'すべて',
     'ラーメン',
@@ -46,7 +50,15 @@ class _HomePageState extends State<HomePage> {
         item: ct,
       ),
     ).toList();
+    _loadAvatarImage();
     super.initState();
+  }
+
+  Future<void> _loadAvatarImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _avatarImagePath = prefs.getString('avatarImagePath');
+    });
   }
 
   // ★ 現在地へ移動する関数
@@ -160,16 +172,21 @@ class _HomePageState extends State<HomePage> {
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.grey.shade300, width: 2),
                           ),
-                          child: IconButton(
-                            icon: const Icon(Icons.account_circle, size: 28),
-                            onPressed: () {
+                          child: InkWell(
+                            onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => const AccountSettingScreen(),
                                 ),
-                              );
+                              ).then((_) => _loadAvatarImage()); // 戻ってきたら再読み込み
                             },
+                            child: _avatarImagePath != null
+                                ? CircleAvatar(
+                                    radius: 14,
+                                    backgroundImage: FileImage(File(_avatarImagePath!)),
+                                  )
+                                : const Icon(Icons.account_circle, size: 28),
                           ),
                         ),
                       ],
