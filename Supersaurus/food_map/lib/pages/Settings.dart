@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_map/pages/Password_Reset.dart';
 import 'package:food_map/pages/Delete_Account.dart';
 import 'package:food_map/pages/Logout.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 
 
@@ -19,6 +21,7 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
   String _email = 'kagureon@1234.com';
   String _userId = 'kcsf5959';
   String _gender = '男';
+  String? _avatarImagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -93,17 +96,31 @@ class _AccountSettingScreenState extends State<AccountSettingScreen> {
 
   Widget _buildAvatarSection() {
     //初期アバターを表示
-    return Column(
-      children: const [
-        CircleAvatar(
-          radius: 40,
-          backgroundColor: Color(0xFFE0E0E0),
-          child: Icon(Icons.person, size: 60, color: Colors.grey),
-        ),
-        SizedBox(height: 8),
-        Text('写真またはアバター編集'),
-      ],
+    return InkWell(
+      onTap: _pickImage,
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: _avatarImagePath != null ? FileImage(File(_avatarImagePath!)) : null,
+            backgroundColor: _avatarImagePath == null ? const Color(0xFFE0E0E0) : null,
+            child: _avatarImagePath == null ? const Icon(Icons.person, size: 60, color: Colors.grey) : null,
+          ),
+          const SizedBox(height: 8),
+          const Text('写真またはアバター編集'),
+        ],
+      ),
     );
+  }
+
+  void _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _avatarImagePath = pickedFile.path;
+      });
+    }
   }
 
   Widget _buildMenuItem(BuildContext context, String title, String value) {
