@@ -1,16 +1,14 @@
-# food_map
+# food_map（Supersaurus）
 
-A new Flutter project.
+本作品は Flutter（Dart）を用いて開発した Android アプリである。
 
-## Getting Started
+ユーザー認証およびデータ管理には Firebase を使用している。
+クライアントアプリは Android 端末上で動作する。
 
-This project is a starting point for a Flutter application.
+また、卒業研究の実行環境として、
+Linux（Ubuntu Server）上に Docker を導入し、
+将来的な Web API やデータベース連携を想定した
+サーバー環境を構築した。
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+現在は Firebase を中心とした構成だが、
+拡張・検証用途として Linux サーバーを併用している。
